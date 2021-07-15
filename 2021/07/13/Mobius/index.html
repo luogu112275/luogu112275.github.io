@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Mobius反演 - Hexo</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="Kevin"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Kevin"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="一些莫反的东西"><meta property="og:type" content="blog"><meta property="og:title" content="Mobius反演"><meta property="og:url" content="http://example.com/2021/07/13/Mobius/"><meta property="og:site_name" content="Hexo"><meta property="og:description" content="一些莫反的东西"><meta property="og:locale" content="en_US"><meta property="og:image" content="http://example.com/img/og_image.png"><meta property="article:published_time" content="2021-07-13T13:52:33.000Z"><meta property="article:modified_time" content="2021-07-15T09:20:23.505Z"><meta property="article:author" content="John Doe"><meta property="article:tag" content="数学"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/2021/07/13/Mobius/"},"headline":"Mobius反演","image":["http://example.com/img/og_image.png"],"datePublished":"2021-07-13T13:52:33.000Z","dateModified":"2021-07-15T09:20:23.505Z","author":{"@type":"Person","name":"John Doe"},"publisher":{"@type":"Organization","name":"Hexo","logo":{"@type":"ImageObject","url":{"text":"Kevin's Blog"}}},"description":"一些莫反的东西"}</script><link rel="canonical" href="http://example.com/2021/07/13/Mobius/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.4.0"></head><body class="is-1-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/">Kevin&#039;s Blog</a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-12"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2021-07-13T13:52:33.000Z" title="7/13/2021, 9:52:33 PM">2021-07-13</time></span><span class="level-item">Updated&nbsp;<time dateTime="2021-07-15T09:20:23.505Z" title="7/15/2021, 5:20:23 PM">2021-07-15</time></span><span class="level-item">15 minutes read (About 2201 words)</span></div></div><h1 class="title is-3 is-size-4-mobile">Mobius反演</h1><div class="content"><p>一些莫反的东西</p>
+<span id="more"></span>
+<h1 id="警告，本文含有大量数学公式"><a href="#警告，本文含有大量数学公式" class="headerlink" title="警告，本文含有大量数学公式"></a>警告，本文含有大量数学公式</h1><h1 id="容斥原理"><a href="#容斥原理" class="headerlink" title="容斥原理"></a>容斥原理</h1><p>有$n$个集合$S_n$</p>
+<script type="math/tex; mode=display">
+|\bigcup_{i=1}^n S_i|=\sum\limits_{i=1}^n|S_i|-\sum\limits_{1\leq i<j\leq n}^n|S_i\bigcap S_j|+...+(-1)^{n+1}|S_1\bigcap S_2...\bigcap S_n|</script><h1 id="莫比乌斯函数"><a href="#莫比乌斯函数" class="headerlink" title="莫比乌斯函数"></a>莫比乌斯函数</h1><p>对于正整数$N$，我们都可以将它进行唯一分解$P_1^{c_1}P_2^{c_2}…P_k^{c_k}$</p>
+<p>我们就用$\mu$</p>
+<p>注：$\exists$表示存在</p>
+<script type="math/tex; mode=display">
+\mu(N)=
+\begin{cases}
+0, \exists i \in [1,k], c_i>1\\
+1, \forall i \in [1,k], c_i=1,(k为偶数)\\
+-1, \forall i \in [1,k], c_i=1,(k为奇数)
+\end{cases}</script><p>用代码求<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">mobius</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		miu[i] = <span class="number">1</span>;</span><br><span class="line">		vis[i]= <span class="literal">false</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(vis[i] == <span class="literal">true</span>)</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		miu[i] = <span class="number">-1</span>; <span class="comment">//质数自己 ,-1</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">2</span>*i; j &lt;= n; j+=i)</span><br><span class="line">		&#123;</span><br><span class="line">			vis[j] = <span class="literal">true</span>;</span><br><span class="line">			<span class="keyword">if</span>(j % (i*i) == <span class="number">0</span>)</span><br><span class="line">				miu[j] = <span class="number">0</span>;</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">				miu[j] *= <span class="number">-1</span>; <span class="comment">//取相反数, j的质因数可能有多个，奇数个就是-1 </span></span><br><span class="line">		&#125; </span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ; </span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="数论函数（算术函数）"><a href="#数论函数（算术函数）" class="headerlink" title="数论函数（算术函数）"></a>数论函数（算术函数）</h1><p>定义域在正整数上的函数</p>
+<p>我们总的来说分为两类：加性函数和积性函数</p>
+<h2 id="加性函数"><a href="#加性函数" class="headerlink" title="加性函数"></a>加性函数</h2><p>如果$\gcd (a,b)=1$，那么$f(a+b)=f(a)+f(b)$</p>
+<p>完全加性函数:$a,b$不一定互质</p>
+<h2 id="积性函数"><a href="#积性函数" class="headerlink" title="积性函数"></a>积性函数</h2><p>$a,b$互质且$f(1)=1$，$(f<em>g)(n)=f(n)</em>g(n)$</p>
+<p>完全积性函数:$a,b$不一定互质</p>
+<h1 id="狄利克雷卷积"><a href="#狄利克雷卷积" class="headerlink" title="狄利克雷卷积"></a>狄利克雷卷积</h1><h2 id="形式"><a href="#形式" class="headerlink" title="形式"></a>形式</h2><p>形式1 $(f*g)(n)=\sum\limits_{xy=n} f(x)\times g(y)$</p>
+<p>形式2 $(f*g)(n)=\sum\limits_{d|n} f(d)\times g(\frac{n}{d})$</p>
+<h2 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h2><h3 id="性质一"><a href="#性质一" class="headerlink" title="性质一"></a>性质一</h3><p>交换律，结合律，分配律</p>
+<h3 id="性质二"><a href="#性质二" class="headerlink" title="性质二"></a>性质二</h3><p>普及一个概念：单位函数</p>
+<script type="math/tex; mode=display">
+\epsilon(n)=
+\begin{cases}
+1,n=1\\
+0,n>1
+\end{cases}</script><p>我们就有</p>
+<script type="math/tex; mode=display">(f*\epsilon)(n)=\sum\limits_{d|n} \epsilon(d)\times f(\frac{n}{d})=f(n)</script><p><em>考虑$d=1$时</em></p>
+<h3 id="性质三"><a href="#性质三" class="headerlink" title="性质三"></a>性质三</h3><p>若$f,g$都是积性函数</p>
+<p>那么$(f*g)(n)$也是积性函数</p>
+<p>证明： </p>
+<script type="math/tex; mode=display">(f*g)(1)=f(1)g(1)=1</script><p>设$a,b$互质</p>
+<script type="math/tex; mode=display">(f*g)(a)=\sum\limits_{d|a} f(d)\times g(\frac{a}{d})...(1)</script><script type="math/tex; mode=display">(f*g)(b)=\sum\limits_{d|b} f(d)\times g(\frac{b}{d})...(2)</script><script type="math/tex; mode=display">(f*g)(ab)=\sum\limits_{d|ab} f(d)\times g(\frac{ab}{d})...(3)</script><p>$(1)*(2)$得</p>
+<script type="math/tex; mode=display">\sum\limits_{d1|a} f(d1)\times g(\frac{a}{d1}) \times \sum\limits_{d2|b} f(d2)\times g(\frac{b}{d2})</script><p>整理得（乘法原理）</p>
+<script type="math/tex; mode=display">\sum\limits_{d1|a,d2|b} f(d1) * g(\frac{a}{d1})\times f(d2) * g(\frac{b}{d2})</script><p>所以有</p>
+<script type="math/tex; mode=display">
+\sum\limits_{d1|a,d2|b} f(d1\times d2) * g(\frac{ab}{d1\times d2})\\
+=\sum\limits_{d|a b} f(d) * g(\frac{ab}{d})</script><p>得到$(3)$式 </p>
+<h3 id="性质四"><a href="#性质四" class="headerlink" title="性质四"></a>性质四</h3><p>关于除数函数与幂函数的小结论（有关常函数）</p>
+<script type="math/tex; mode=display">(f*I)(n)=\sum\limits_{d|n} f(d) \times I(\frac{n}{d})=\sum\limits_{d|n} f(d)</script><p>推论</p>
+<script type="math/tex; mode=display">(ID_k*I)(n)=\sum\limits_{d|n} ID_k(d)=\sum\limits_(n)</script><p>除数函数和幂函数可以相互转化</p>
+<p>其实这就是一个简单的莫比乌斯反演。 </p>
+<h3 id="性质五"><a href="#性质五" class="headerlink" title="性质五"></a>性质五</h3><p>关于欧拉函数的小结论</p>
+<script type="math/tex; mode=display">(\varphi * I)(n)=\sum\limits_{d|n} \varphi(d)</script><p>当$p$为质数且$d=p^m$时</p>
+<script type="math/tex; mode=display">
+\sum\limits_{d|n} \varphi(d)=\varphi(1)+\sum\limits_{i=1}^{m} \varphi(p^i)\\
+=1+\sum\limits_{i=1}^{m}(p^i-p^{i-1})=1+p^m-p^0=p^m=d</script><p>综上，$p$为质数时，$(\varphi *I)(p^m)=p^m$ </p>
+<p>进一步推广得到$(\varphi *I)(n)=n$</p>
+<p>即$\varphi * I=ID$</p>
+<h3 id="性质六"><a href="#性质六" class="headerlink" title="性质六"></a>性质六</h3><p>莫比乌斯函数得小结论</p>
+<script type="math/tex; mode=display">
+(\mu * ID)(n)=\varphi(n)</script><p>证明很短 </p>
+<script type="math/tex; mode=display">\mu * ID = \mu * (\varphi * I) = \mu * I * \varphi = \epsilon * \varphi = \varphi</script><p>还有$(\mu * I)(n)=\epsilon(n)$</p>
+<h3 id="性质七"><a href="#性质七" class="headerlink" title="性质七"></a>性质七</h3><script type="math/tex; mode=display">\mu * I=\varepsilon\\
+=\sum\limits_{d|n} \mu(d)=\sum\limits_{i=0}^{k} (-1)^k C(k,i)\\
+=\sum\limits_{i=0}^{k} (1)^{k-i} (-1)^k C(k,i)</script><p>这不是二项式定理吗？简化为</p>
+<script type="math/tex; mode=display">(1-1)^k</script><p>观察一下发现就是单位函数的定义了</p>
+<h2 id="常用积性函数"><a href="#常用积性函数" class="headerlink" title="常用积性函数"></a>常用积性函数</h2><h3 id="单位函数"><a href="#单位函数" class="headerlink" title="单位函数"></a>单位函数</h3><script type="math/tex; mode=display">
+\epsilon(n)=
+\begin{cases}
+1,n=1\\
+0,n>1
+\end{cases}</script><p>是完全积性函数</p>
+<h3 id="幂函数"><a href="#幂函数" class="headerlink" title="幂函数"></a>幂函数</h3><script type="math/tex; mode=display">
+ID_k(n)=n^k</script><p>特别的，当$k=1$时，$ID_1(n)=n$；$k=0$时，$ID_0(n)=1$</p>
+<p>是完全积性函数</p>
+<h3 id="除数函数"><a href="#除数函数" class="headerlink" title="除数函数"></a>除数函数</h3><script type="math/tex; mode=display">
+\sigma_k(n)=\sum\limits_{d|n}d^k</script><p>当$k=1$时，<script type="math/tex">\sigma_1(n)=\sum\limits_{d|n}d^k</script><br>叫做约数和函数</p>
+<p>当$k=0$时，<script type="math/tex">\sigma_0(n)=\sum\limits_{d|n}1</script><br>叫做约数个数函数</p>
+<h3 id="莫比乌斯函数-1"><a href="#莫比乌斯函数-1" class="headerlink" title="莫比乌斯函数"></a>莫比乌斯函数</h3><p>这个不用讲了吧。</p>
+<h3 id="欧拉函数"><a href="#欧拉函数" class="headerlink" title="欧拉函数"></a>欧拉函数</h3><p>参见<a target="_blank" rel="noopener" href="https://www.cnblogs.com/zhangwenxuan/p/14449067.html">我的这篇文章</a></p>
+<h3 id="常数函数"><a href="#常数函数" class="headerlink" title="常数函数"></a>常数函数</h3><script type="math/tex; mode=display">I(n)=1</script><h1 id="莫比乌斯反演公式"><a href="#莫比乌斯反演公式" class="headerlink" title="莫比乌斯反演公式"></a>莫比乌斯反演公式</h1><p><em>终于进入正题</em></p>
+<script type="math/tex; mode=display">
+g(n)=\sum\limits_{d|n} f(d)</script><p>等价于</p>
+<script type="math/tex; mode=display">
+f(n)=\sum\limits_{d|n} \mu(d) g(\frac{n}{d})</script><p>用更简单的形式为</p>
+<script type="math/tex; mode=display">f*I=g \iff f=g*\mu</script><p>拿简单的形式来证明</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+f*I=g\\
+f*(I*\mu)=g*\mu\\
+f*\epsilon=g*\mu\\
+f=g*\mu
+\end{aligned}</script><h1 id="做题前的小补充"><a href="#做题前的小补充" class="headerlink" title="做题前的小补充"></a>做题前的小补充</h1><h2 id="整除分块"><a href="#整除分块" class="headerlink" title="整除分块"></a>整除分块</h2><p>一个小例题</p>
+<p>给定一个整数$n\in [1,10^9]$</p>
+<p>求</p>
+<script type="math/tex; mode=display">\sum\limits_{i=1}^n\lfloor\frac{n}{i}\rfloor</script><p>我们将他们按照$\lfloor\frac{n}{i}\rfloor$来分成一个一个块，假设这一个块的左右边界分别是$L,R$</p>
+<p>则有</p>
+<script type="math/tex; mode=display">\left\lfloor\frac{n}{L}\right\rfloor=\left\lfloor\frac{n}{R}\right\rfloor\\
+\left\lfloor\frac{n}{L}\right\rfloor\leq \frac{n}{R}\\
+\frac{1}{\left\lfloor\frac{n}{L}\right\rfloor} \geq \frac{R}{n}\\
+R\leq \left\lfloor\frac{n}{\left\lfloor\frac{n}{L}\right\rfloor}\right\rfloor</script><p>又因为$R\in Z$</p>
+<script type="math/tex; mode=display">R=\left\lfloor\frac{n}{\left\lfloor\frac{n}{L}\right\rfloor}\right\rfloor</script><p>真例题<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1403">这里</a></p>
+<p>可以化简为以上的形式，就不分析了（考虑贡献）</p>
+<p>代码<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> int long long</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">int</span> n, ans;</span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	cin &gt;&gt; n; </span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> l = <span class="number">1</span>, r; l &lt;= n; l = r + <span class="number">1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		r = (n / (n / l));</span><br><span class="line">		ans += (r - l + <span class="number">1</span>) * (n / l);</span><br><span class="line">	&#125;</span><br><span class="line">	cout &lt;&lt; ans;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>小小小扩展<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2424">这里</a></p>
+<p>我们实际上求的是</p>
+<script type="math/tex; mode=display">\sum\limits_{i=1}^n i*\lfloor\frac{n}{i}\rfloor</script><p>对于每一个块单独分析一波，就好了（高斯求和公式）</p>
+<p>Code<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> int long long</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">int</span> x, y;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> l = <span class="number">1</span>, r; l &lt;= x; l = r + <span class="number">1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		r = (x / (x / l));</span><br><span class="line">		ans += (r - l + <span class="number">1</span>) * (x / l) * (l + r) / <span class="number">2</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	cin &gt;&gt; x &gt;&gt; y; </span><br><span class="line">	cout &lt;&lt; <span class="built_in">sum</span>(y) - <span class="built_in">sum</span>(x - <span class="number">1</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>再来一个补充<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2261">这里</a></p>
+<h1 id="莫比乌斯反演的应用"><a href="#莫比乌斯反演的应用" class="headerlink" title="莫比乌斯反演的应用"></a>莫比乌斯反演的应用</h1><h2 id="一-关于-gcd"><a href="#一-关于-gcd" class="headerlink" title="一.关于$\gcd$"></a>一.关于$\gcd$</h2><script type="math/tex; mode=display">(\gcd(i,j)==1)=\sum\limits_{d|\gcd(i,j)} \mu(d)</script><p>证明</p>
+<script type="math/tex; mode=display">\mu * I=\epsilon\\
+\sum\limits_{d|n}\mu(d)=\epsilon=(n==1)</script><p>将$n=\gcd(i,j)$带入即可得到结论</p>
+<h2 id="二-还是关于-gcd"><a href="#二-还是关于-gcd" class="headerlink" title="二.还是关于$\gcd$"></a>二.还是关于$\gcd$</h2><script type="math/tex; mode=display">\sum\limits_{i=1}^{n}\sum\limits_{j=1}^{n} (\gcd(i,j)==k)\Rightarrow \sum\limits_{i=1}^{\frac{n}{k}}\sum\limits_{j=1}^{\frac{n}{k}} (\gcd(i,j)==1)</script><p>例题：求$1\leq x\leq n, 1\leq y\leq m, \gcd(x,y)=1$的数量</p>
+<script type="math/tex; mode=display">\Rightarrow \sum\limits_{i=1}^{n}\sum\limits_{j=1}^{m}\sum\limits_{d|\gcd}^{min\{n,m\}}</script><p>太难搞，改为枚举$\gcd$</p>
+<script type="math/tex; mode=display">\sum\limits_{d=1}^{min\{n,m\}} \sum\limits_{i=1}^{n/d}\sum\limits_{j=1}^{m/d}\mu(d)\\
+\Rightarrow \sum\limits_{d=1}^{min\{n,m\}}\mu(d)\sum\limits_{i=1}^{n/d}\sum\limits_{j=1}^{m/d}\\
+\Rightarrow \sum\limits_{d=1}^{min\{n,m\}}\mu(d)\left\lfloor\frac{n}{d}\right\rfloor \left\lfloor\frac{m}{d}\right\rfloor</script><p>一个整除分块（二维）就做好了</p>
+<h1 id="杜教筛"><a href="#杜教筛" class="headerlink" title="杜教筛"></a>杜教筛</h1><p>应用场景：求积性函数$f(n)$的前缀和，即</p>
+<script type="math/tex; mode=display">\sum\limits_{i=1}^{n} f(i)</script><p>我们设</p>
+<script type="math/tex; mode=display">S(n)=\sum\limits_{i=1}^{n} f(i)</script><p>我们构造另一个积性函数$g(n)$，那么有$(f*g)(n)$</p>
+<script type="math/tex; mode=display">\sum\limits_{i=1}^{n} (f*g)(i)=\sum\limits_{i=1}^{n}\sum\limits_{xy=1}f(x)g(y)\\
+\Rightarrow \sum\limits_{y=1}^{n}\sum\limits_{x=1}^{\lfloor\frac{n}{y}\rfloor}f(x)g(y)\\
+\Rightarrow \sum\limits_{y=1}^{n} g(y) \sum\limits_{x=1}^{\lfloor\frac{n}{y}\rfloor}=\sum\limits_{y=1}^{n} g(y) S(\lfloor\frac{n}{y}\rfloor)\\
+\Rightarrow g(1)S(n)+\sum\limits_{y=2}{n}g(y)S(\lfloor\frac{n}{y}\rfloor)</script><p>移项可得</p>
+<script type="math/tex; mode=display">
+g(1)S(n)=\sum\limits_{i=1}^{n}(f*g)(i)-\sum\limits_{y=2}^{n}g(y)S(\lfloor\frac{n}{y}\rfloor)</script><p>这里我们令$f=\mu$，因为$\mu*I=\epsilon$<br>代入得</p>
+<script type="math/tex; mode=display">S(n)=1-\sum\limits_{y=2}^{n} S(\lfloor\frac{n}{y}\rfloor)</script><p>这样我们就得到了一个递推式，如果我们纯递归的话时间复杂度为$O(n^{\frac{3}{4}})$</p>
+<p>我们有一个小技巧，先用线性筛筛出前$\frac{2}{3}n$个$\mu$，再来递推，就可以优化到$O(n^{\frac{2}{3}})$</p>
+<p>很神奇吧，时间复杂度我不会证明（<del>菜</del>） </p>
+<h1 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h1><h2 id="P3455-POI2007-ZAP-Queries"><a href="#P3455-POI2007-ZAP-Queries" class="headerlink" title="P3455 [POI2007]ZAP-Queries"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3455">P3455 [POI2007]ZAP-Queries</a></h2><p>我们看一下这道题要我们求的式子</p>
+<script type="math/tex; mode=display">
+\sum\limits_{i=1}^{a}\sum\limits_{j=1}^{b}[\gcd(i,j)=d]</script><p>根据上面的定理可以得到</p>
+<script type="math/tex; mode=display">
+\sum\limits_{i=1}^{\left\lfloor a/d\right\rfloor}\sum\limits_{j=1}^{\left\lfloor b/d\right\rfloor}[\gcd(i,j)=1]</script><p>令$x=a/d,y=b/d$，反演得到</p>
+<script type="math/tex; mode=display">
+\sum\limits_{d=1}^{min\{x,y\}}\mu(d)\left\lfloor\frac{n}{d}\right\rfloor \left\lfloor\frac{m}{d}\right\rfloor</script><p>注意这一个式子中的$d$不是题目中的<br>我们先预处理出来莫比乌斯函数的前缀和，然后用一个整出分块就做完了，还是很模板的<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> int long long</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">5e4</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> n, m;</span><br><span class="line"><span class="keyword">int</span> miu[N], sum[N];</span><br><span class="line"><span class="keyword">bool</span> vis[N];</span><br><span class="line">vector&lt;<span class="keyword">int</span>&gt; pri;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		miu[i] = <span class="number">1</span>;</span><br><span class="line">		vis[i]= <span class="literal">false</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(vis[i] == <span class="literal">true</span>)</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		miu[i] = <span class="number">-1</span>; <span class="comment">//质数自己 ,-1</span></span><br><span class="line">		pri.<span class="built_in">push_back</span>(i);</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">2</span>*i; j &lt;= n; j+=i)</span><br><span class="line">		&#123;</span><br><span class="line">			vis[j] = <span class="literal">true</span>;</span><br><span class="line">			<span class="keyword">if</span>(j % (i*i) == <span class="number">0</span>)</span><br><span class="line">				miu[j] = <span class="number">0</span>;</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">				miu[j] *= <span class="number">-1</span>; <span class="comment">//取相反数, j的质因数可能有多个，奇数个就是-1 </span></span><br><span class="line">		&#125; </span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i&lt;= n; i ++) </span><br><span class="line">		sum[i] = sum[i - <span class="number">1</span>] + miu[i];</span><br><span class="line">	<span class="keyword">return</span> ; </span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Get</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> m)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> l = <span class="number">1</span>, r; l &lt;= <span class="built_in">min</span>(n, m); l = r + <span class="number">1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		r = <span class="built_in">min</span>(n / (n / l), m / (m / l));</span><br><span class="line">		ans += (n / l) * (m / l) * (sum[r] - sum[l - <span class="number">1</span>]);</span><br><span class="line">	&#125;</span><br><span class="line"><span class="comment">//	cout &lt;&lt; ans &lt;&lt; endl;</span></span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	ios::<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>);</span><br><span class="line">	<span class="built_in">init</span>(<span class="number">50000</span>);</span><br><span class="line">	<span class="keyword">int</span> T;</span><br><span class="line">	cin &gt;&gt; T;</span><br><span class="line">	<span class="keyword">while</span>(T --)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> ans = <span class="number">0</span>, d = <span class="number">0</span>;</span><br><span class="line">		cin &gt;&gt; n &gt;&gt; m &gt;&gt; d;</span><br><span class="line">		cout &lt;&lt; <span class="built_in">Get</span>(n / d, m / d) &lt;&lt; <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><del>愉快的做出来第一道莫反题目</del></p>
+</div><div class="article-licensing box"><div class="licensing-title"><p>Mobius反演</p><p><a href="http://example.com/2021/07/13/Mobius/">http://example.com/2021/07/13/Mobius/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>John Doe</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2021-07-13</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2021-07-15</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/%E6%95%B0%E5%AD%A6/">数学</a></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2021/07/14/BSGS/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">BSGS</span></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">Comments</h3><div id="SOHUCS" sid="2021/07/13/Mobius/"></div><script charset="utf-8" src="https://changyan.sohu.com/upload/changyan.js"></script><script>window.changyan.api.config({appid: 'cyvtQiMTv',conf: 'prod_13bde041c53a2a0d0308f6d8f083ccbc'});</script></div></div></div><!--!--><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/">Kevin&#039;s Blog</a><p class="is-size-7"><span>&copy; 2021 John Doe</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><script type="text/x-mathjax-config">MathJax.Hub.Config({
+            'HTML-CSS': {
+                matchFontHeight: false
+            },
+            SVG: {
+                matchFontHeight: false
+            },
+            CommonHTML: {
+                matchFontHeight: false
+            },
+            tex2jax: {
+                inlineMath: [
+                    ['$','$'],
+                    ['\\(','\\)']
+                ]
+            }
+        });</script><script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>
